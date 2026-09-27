@@ -1,0 +1,30 @@
+===== University Leave Approval System (Chain of Responsibility) =====
+
+Application: Rahim (Roll 2103001) | 1 day(s) | Reason: Fever
+   [APPROVED] by Class Advisor (1 day(s))
+
+Application: Karim (Roll 2103002) | 4 day(s) | Reason: Family program
+   Class Advisor -> forwarding to Head of Department
+   [APPROVED] by Head of Department (4 day(s))
+
+Application: Nusrat (Roll 2103003) | 8 day(s) | Reason: Surgery recovery
+   Class Advisor -> forwarding to Head of Department
+   Head of Department -> forwarding to Dean
+   [APPROVED] by Dean (8 day(s))
+
+Application: Tanvir (Roll 2103004) | 15 day(s) | Reason: Study tour abroad
+   Class Advisor -> forwarding to Head of Department
+   Head of Department -> forwarding to Dean
+   [REJECTED] No authority can approve 15 days of leave.
+
+Application: Sadia (Roll 2103005) | 0 day(s)
+   [ERROR] Leave duration must be at least 1 day.
+
+----- Try your own request (enter 0 days to exit) -----
+Number of leave days: 
+Application: Demo Student (Roll 2103999) | 3 day(s) | Reason: Live demo
+   Class Advisor -> forwarding to Head of Department
+   [APPROVED] by Head of Department (3 day(s))
+Number of leave days:    [ERROR] Leave duration must be at least 1 day.
+Number of leave days: 
+Goodbye!

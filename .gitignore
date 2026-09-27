@@ -1,0 +1,5 @@
+*.exe
+*.o
+leave_approval
+text_editor
+.vscode/

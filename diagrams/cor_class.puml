@@ -1,0 +1,52 @@
+@startuml cor_class
+skinparam classAttributeIconSize 0
+skinparam defaultFontName Helvetica
+skinparam shadowing false
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #333333
+skinparam classArrowColor #333333
+title Chain of Responsibility - Leave Approval System
+
+class LeaveRequest {
+  - studentName : string
+  - roll : string
+  - days : int
+  - reason : string
+  + LeaveRequest(name, roll, days, reason)
+  + getDays() : int
+  + getStudentName() : string
+}
+
+abstract class Approver <<Handler>> {
+  # next : Approver*
+  # title : string
+  + setNext(next : Approver*) : Approver*
+  + getTitle() : string
+  + {abstract} handleRequest(r : LeaveRequest) : void
+  # forward(r : LeaveRequest) : void
+  # approve(r : LeaveRequest) : void
+}
+
+class ClassAdvisor <<ConcreteHandler>> {
+  + handleRequest(r) : void
+}
+note bottom of ClassAdvisor : approves up to 2 days
+class HeadOfDepartment <<ConcreteHandler>> {
+  + handleRequest(r) : void
+}
+note bottom of HeadOfDepartment : approves up to 5 days
+class Dean <<ConcreteHandler>> {
+  + handleRequest(r) : void
+}
+note bottom of Dean : approves up to 10 days
+
+class "main()" as Client <<Client>>
+
+Approver o--> "0..1" Approver : next
+Approver <|-- ClassAdvisor
+Approver <|-- HeadOfDepartment
+Approver <|-- Dean
+Client --> Approver : submits to first handler
+Client ..> LeaveRequest : creates
+Approver ..> LeaveRequest : handles
+@enduml

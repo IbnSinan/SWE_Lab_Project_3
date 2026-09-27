@@ -1,0 +1,18 @@
+@startuml cor_sequence
+skinparam defaultFontName Helvetica
+skinparam shadowing false
+title Execution Flow - 8-day leave request
+actor Student
+participant "main()\n(Client)" as C
+participant ":ClassAdvisor" as A
+participant ":HeadOfDepartment" as H
+participant ":Dean" as D
+Student -> C : apply for 8 days
+C -> A : handleRequest(request)
+A -> A : days <= 2 ? No
+A -> H : handleRequest(request)
+H -> H : days <= 5 ? No
+H -> D : handleRequest(request)
+D -> D : days <= 10 ? Yes
+D --> C : [APPROVED] by Dean
+@enduml
